@@ -1,0 +1,42 @@
+
+
+<h2 style="color: lightskyblue"><center> Is this reindeer weather ⬇ </center> </h2>
+<br>
+<center>
+<form action="/weather" method="POST" class="search">
+    <label style="color: lightskyblue" for="city">City</label>
+    <input type="text" name="city" id="city" placeholder="type city here"> 
+    <button type="submit" class="btn btn-outline-success my-2 my-sm-0" data-toggle="popover" style="color: lightskyblue" >Search</button>
+</form>
+</center>
+<br>
+<div class="card" style="width: 18rem;">
+    
+    <img src="http://openweathermap.org/img/wn/<%= myWeather.weather[0].icon %>@2x.png" class="card-img-top" width="5px" height="150px" alt="Card image cap">
+    
+    <div class="card-body">
+    <h2 class="card-title"> <%= myWeather.name %> , <%= myWeather.sys.country %> </h2>
+    <h2 class="card-text"><%= myWeather.weather[0].description %> </h2>
+    <h2 class="card-text"><%= myWeather.main.temp  %> <b> °F </b> </h2>
+    <p class="card-text"><b>what it feels like</b>  <%= myWeather.main.feels_like  %>° </p>
+    <p class="card-text"><b>minimum temp</b> <%= myWeather.main.temp_min %>° </p>
+    <p class="card-text"><b>max temp</b> <%=myWeather.main.temp_max  %>° </p>
+    <p class="card-text"><b>humidity</b> <%= myWeather.main.humidity %> </p>
+
+
+        <form action="/weather/save" method="POST">
+            <input hidden type="text" name="city" id="city" value="<%=myWeather.name%>">
+            <input hidden type="text" name="country" id="country" value="<%=myWeather.sys.country%>">
+            <input hidden type="text" name="description" id="description" value="<%=myWeather.weather[0].description%>">
+            <input hidden type="number" name="temperature" id="temperature" value="<%=myWeather.main.temp%>">
+            <input hidden type="number" name="feels_like" id="feels_like" value="<%=myWeather.main.feels_like%>">
+            <input hidden type="number" name="min_temp" id="min_temp" value="<%=myWeather.main.temp_min%>">
+            <input hidden type="number" name="max_temp" id="max_temp" value="<%=myWeather.main.temp_max%>">
+            <input hidden type="number" name="humidity" id="humidity" value="<%=myWeather.main.humidity%>">
+            
+            
+            <button class="btn btn-dark" style="color: lightskyblue" data-toggle="popover">save this location</button>
+        </form>
+    </div>
+   
+</div>
